@@ -4,7 +4,7 @@ const { getUsers, editUser, getUserById, editUserStatus } = require('../controll
 const { login, signup, verifyAccount, resendOTP, forgotPassword, resetPassword } = require('../controller/auth.controller'); // استيراد الدوال الجديدة
 const { authenticate } = require('../middlewares/auth.middleware');
 const { authorize } = require('../middlewares/role.middelware');
-const upload = require('../middlewares/uploads.middelware');
+const upload = require('../middlewares/uploads_Iamges.middelware');
 const { authLimiter, emailLimiter } = require('../middlewares/rateLimit.middleware');
 
 // Login: محاولات تخمين الباسورد

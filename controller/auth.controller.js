@@ -383,7 +383,7 @@ exports.forgotPassword = async (req, res) => {
     try {
         const { email } = req.body;
         const user = await User.findOne({ email });
-
+        
         if (!user) return res.status(404).json({ message: "User not found" });
 
         const otpCode = generateOTP();
@@ -397,7 +397,7 @@ exports.forgotPassword = async (req, res) => {
             message: `Code: ${otpCode}`,
             html: `<div style="text-align:center"><h2>Reset Password</h2><h1>${otpCode}</h1></div>`
         });
-
+        console.log(`Reset code for ${email}: ${otpCode}`); // للتطوير فقط، احذر من تركه في الإنتاج
         res.status(200).json({ message: "Reset code sent" });
     } catch (error) {
         res.status(500).json({ message: "Error sending reset code", error: error.message });
