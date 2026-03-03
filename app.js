@@ -7,7 +7,7 @@ const connectDB = require('./config/db.config');
 const cors = require('cors');
 const path = require('path');
 const logger = require('./utils/logger.utils');
-
+const adminAccountMiddleware = require('./middlewares/createAdminAccount.middelware');
 
 
 dotenv.config();
@@ -31,8 +31,12 @@ app.use('/api/urls', require('./routes/url.routes'));
 app.use('/api/vuln', require('./routes/vuln.routes'));
 app.use('/api/results', require('./routes/results.routes'));
 app.use('/api/logs', require('./routes/log.routes'));
+app.use('/api/testimonials',require('./routes/testimonials.routes'))
+app.use('/api/achievements',require('./routes/Achievement.routes'))
+app.use('/api/demovideo',require('./routes/demovideo.routes'))
+app.use('/api/download',require('./routes/download_file.routes'))
 
-// basic error handler (so multer/file errors return nice message)
+// basic error handler (so multer/file errors return nice message)  
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
   if (res.headersSent) return next(err);
@@ -62,6 +66,7 @@ app.use(golbalErrorHandler);
       logger.info(`Server is running on port ${PORT}`);
     //   console.log(`Serving uploads folder from: ${uploadsPath}`);
     });
+    adminAccountMiddleware.createAdminAccount();
   } catch (err) {
     console.error('Failed to connect DB, server not started:', err);
     process.exit(1);
