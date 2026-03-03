@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getUsers, editUser, getUserById, editUserStatus } = require('../controller/user.controller'); // createUser شلناها لاننا هنستخدم signup
-const { login, signup, verifyAccount, resendOTP, forgotPassword, resetPassword } = require('../controller/auth.controller'); // استيراد الدوال الجديدة
+const { login, signup, verifyAccount, resendOTP, forgotPassword, resetPassword,verifyOTP } = require('../controller/auth.controller'); // استيراد الدوال الجديدة
 const { authenticate } = require('../middlewares/auth.middleware');
 const { authorize } = require('../middlewares/role.middelware');
 const upload = require('../middlewares/uploads_Iamges.middelware');
@@ -19,7 +19,7 @@ router.post('/verify', authLimiter, verifyAccount);
 // Resend & Forgot: منع إغراق السيرفر بالإيميلات
 router.post('/resend-otp', emailLimiter, resendOTP);
 router.post('/forgot-password', emailLimiter, forgotPassword);
-
+router.post('/verify-otp', authLimiter, verifyOTP);
 // Reset: منع تخمين الكود والباسورد
 router.post('/reset-password', authLimiter, resetPassword);
 
