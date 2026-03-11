@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema({
     userActive: {
         type: String,
         enum: ['active', 'notActive'],
-        default: 'notActive'
+        default: 'active'
     },
     userPending: {
         type: String,
