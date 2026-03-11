@@ -120,7 +120,7 @@ exports.editVulnerability = async (req, res) => {
         if (fs.existsSync(oldFilePath)) {
             try {
                 fs.unlinkSync(oldFilePath); // حذف الملف
-                console.log(`🗑️ Old script deleted: ${oldVuln.scriptFile}`);
+                // console.log(`🗑️ Old script deleted: ${oldVuln.scriptFile}`);
             } catch (err) {
                 console.error(`❌ Failed to delete old script: ${err.message}`);
             }

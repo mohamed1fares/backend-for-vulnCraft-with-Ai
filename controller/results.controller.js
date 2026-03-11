@@ -520,7 +520,7 @@ exports.scanAll = async (req, res) => {
     }
 
     const pythonCommand = getPythonCommand();
-    console.log(`🚀 Starting Scan using [${pythonCommand}] for: ${targetUrlString} (ID: ${urlId})`);
+    // console.log(`🚀 Starting Scan using [${pythonCommand}] for: ${targetUrlString} (ID: ${urlId})`);
 
     // تشغيل الفحص
     const scanPromises = vulnerabilities.map(async (vuln) => {
@@ -539,7 +539,7 @@ exports.scanAll = async (req, res) => {
         else if (Array.isArray(scriptResult.findings) && scriptResult.findings.length > 0) isDetected = true;
       }
 
-      console.log(`Checking ${vuln.name}: ${isDetected ? "DETECTED 🔴" : "Safe 🟢"}`);
+      // console.log(`Checking ${vuln.name}: ${isDetected ? "DETECTED 🔴" : "Safe 🟢"}`);
 
       return {
         vulnerabilityId: vuln._id,
@@ -624,7 +624,7 @@ exports.scanAll = async (req, res) => {
               </div>
             `
         });
-        console.log(`✅ Email sent to ${urlDoc.user.email} with count: ${detectedCount}`);
+        // console.log(`✅ Email sent to ${urlDoc.user.email} with count: ${detectedCount}`);
       } catch (emailError) {
           console.error("❌ Failed to send email:", emailError.message);
       }

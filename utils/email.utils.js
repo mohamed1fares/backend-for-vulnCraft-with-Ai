@@ -26,7 +26,7 @@ const sendEmail = async (options) => {
         <br>
         <a href="${options.link}" style="background: #4c6ef5; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">View Report</a>
         <br><br>
-        <p style="font-size: 12px; color: #777;">SecuScan Automated System</p>
+        <p style="font-size: 12px; color: #777;">VulnCraft Automated System</p>
       </div>
     `
   };

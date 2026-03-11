@@ -26,7 +26,30 @@ const userSchema = new mongoose.Schema({
     age: { type: Number, required: true, min: 0 },
     nationalID: { type: Number, required: true, unique: true, minlength: 10 },
     image: { type: String, required: true },
-    
+
+
+
+
+
+
+    jobTitle: { type: String, trim: true },
+    gender:{
+        type: String,
+        enum: ['male', 'female'],
+        default:'male'
+    },
+    // license:{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'License',
+    //     required: true
+    // },
+
+
+
+
+
+
+
     userActive: {
         type: String,
         enum: ['active', 'notActive'],
