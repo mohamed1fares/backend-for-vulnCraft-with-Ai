@@ -1,0 +1,4337 @@
+{
+    "_id": {
+      "$oid": "69389f5c99f8c0b59cae2de9"
+    },
+    "url": {
+      "$oid": "69389ed799f8c0b59cae2dd8"
+    },
+    "summary": {
+      "totalVulnerabilities": 2,
+      "highestSeverity": "Critical"
+    },
+    "details": [
+      {
+        "vulnerabilityId": {
+          "$oid": "6924bc5348d8f44f57dec60e"
+        },
+        "vulnerabilityName": "SQL",
+        "severity": "High",
+        "isDetected": true,
+        "technicalDetail": {
+          "status": "ok",
+          "summary": {
+            "task_id": "scan-6924bc5348d8f44f57dec60e",
+            "base_url": "http://testphp.vulnweb.com/search.php",
+            "collected_endpoints": [
+              "http://testphp.vulnweb.com/search.php",
+              "http://testphp.vulnweb.com/AJAX/index.php",
+              "http://testphp.vulnweb.com/artists.php",
+              "http://testphp.vulnweb.com/cart.php",
+              "http://testphp.vulnweb.com/categories.php",
+              "http://testphp.vulnweb.com/disclaimer.php",
+              "http://testphp.vulnweb.com/guestbook.php",
+              "http://testphp.vulnweb.com/index.php",
+              "http://testphp.vulnweb.com/login.php",
+              "http://testphp.vulnweb.com/privacy.php",
+              "http://testphp.vulnweb.com/userinfo.php"
+            ],
+            "scan_time": 1765318492.089935,
+            "results_count": 220,
+            "findings_count": 10,
+            "findings": [
+              {
+                "type": "sqli_error_suspected",
+                "detail": {
+                  "url": "http://testphp.vulnweb.com/search.php",
+                  "params": [
+                    "searchFor"
+                  ],
+                  "method": "POST",
+                  "payload": null,
+                  "payload_hash": "ef201c74",
+                  "status": 200,
+                  "size": 2231,
+                  "time_s": 0.536,
+                  "error_signatures": [
+                    "SQL syntax",
+                    "You have an error in your SQL syntax",
+                    "MySQL"
+                  ],
+                  "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318368.html"
+                }
+              },
+              {
+                "type": "sqli_union_suspected",
+                "detail": {
+                  "url": "http://testphp.vulnweb.com/search.php",
+                  "params": [
+                    "searchFor"
+                  ],
+                  "method": "POST",
+                  "payload": null,
+                  "payload_hash": "bcbace8b",
+                  "status": 200,
+                  "size": 2326,
+                  "time_s": 0.552,
+                  "error_signatures": [
+                    "SQL syntax",
+                    "You have an error in your SQL syntax",
+                    "MySQL"
+                  ],
+                  "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318369.html"
+                }
+              },
+              {
+                "type": "sqli_boolean",
+                "detail": {
+                  "true": {
+                    "url": "http://testphp.vulnweb.com/cart.php",
+                    "params": [
+                      "uname",
+                      "pass"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "484b29d9",
+                    "status": 200,
+                    "size": 4903,
+                    "time_s": 0.78,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318394.html"
+                  },
+                  "false": {
+                    "url": "http://testphp.vulnweb.com/cart.php",
+                    "params": [
+                      "uname",
+                      "pass"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "1072a64d",
+                    "status": 200,
+                    "size": 4903,
+                    "time_s": 0.754,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318395.html"
+                  },
+                  "diff_ratio": 1,
+                  "size_diff": 0,
+                  "confidence": 0.9
+                }
+              },
+              {
+                "type": "sqli_boolean",
+                "detail": {
+                  "true": {
+                    "url": "http://testphp.vulnweb.com/cart.php",
+                    "params": [
+                      "searchFor"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "484b29d9",
+                    "status": 200,
+                    "size": 4903,
+                    "time_s": 0.506,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318400.html"
+                  },
+                  "false": {
+                    "url": "http://testphp.vulnweb.com/cart.php",
+                    "params": [
+                      "searchFor"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "1072a64d",
+                    "status": 200,
+                    "size": 4903,
+                    "time_s": 0.505,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318401.html"
+                  },
+                  "diff_ratio": 1,
+                  "size_diff": 0,
+                  "confidence": 0.9
+                }
+              },
+              {
+                "type": "sqli_boolean",
+                "detail": {
+                  "true": {
+                    "url": "http://testphp.vulnweb.com/index.php",
+                    "params": [
+                      "message"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "484b29d9",
+                    "status": 200,
+                    "size": 4958,
+                    "time_s": 0.501,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318448.html"
+                  },
+                  "false": {
+                    "url": "http://testphp.vulnweb.com/index.php",
+                    "params": [
+                      "message"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "1072a64d",
+                    "status": 200,
+                    "size": 4958,
+                    "time_s": 0.49,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318448.html"
+                  },
+                  "diff_ratio": 1,
+                  "size_diff": 0,
+                  "confidence": 0.9
+                }
+              },
+              {
+                "type": "sqli_boolean",
+                "detail": {
+                  "true": {
+                    "url": "http://testphp.vulnweb.com/login.php",
+                    "params": [
+                      "message"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "484b29d9",
+                    "status": 200,
+                    "size": 5523,
+                    "time_s": 0.576,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318459.html"
+                  },
+                  "false": {
+                    "url": "http://testphp.vulnweb.com/login.php",
+                    "params": [
+                      "message"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "1072a64d",
+                    "status": 200,
+                    "size": 5523,
+                    "time_s": 0.528,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318459.html"
+                  },
+                  "diff_ratio": 1,
+                  "size_diff": 0,
+                  "confidence": 0.9
+                }
+              },
+              {
+                "type": "sqli_boolean",
+                "detail": {
+                  "true": {
+                    "url": "http://testphp.vulnweb.com/privacy.php",
+                    "params": [
+                      "username",
+                      "password"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "484b29d9",
+                    "status": 404,
+                    "size": 16,
+                    "time_s": 0.487,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318464.html"
+                  },
+                  "false": {
+                    "url": "http://testphp.vulnweb.com/privacy.php",
+                    "params": [
+                      "username",
+                      "password"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "1072a64d",
+                    "status": 404,
+                    "size": 16,
+                    "time_s": 0.49,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318465.html"
+                  },
+                  "diff_ratio": 1,
+                  "size_diff": 0,
+                  "confidence": 0.9
+                }
+              },
+              {
+                "type": "sqli_boolean",
+                "detail": {
+                  "true": {
+                    "url": "http://testphp.vulnweb.com/privacy.php",
+                    "params": [
+                      "message"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "484b29d9",
+                    "status": 404,
+                    "size": 16,
+                    "time_s": 0.504,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318470.html"
+                  },
+                  "false": {
+                    "url": "http://testphp.vulnweb.com/privacy.php",
+                    "params": [
+                      "message"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "1072a64d",
+                    "status": 404,
+                    "size": 16,
+                    "time_s": 0.493,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318471.html"
+                  },
+                  "diff_ratio": 1,
+                  "size_diff": 0,
+                  "confidence": 0.9
+                }
+              },
+              {
+                "type": "sqli_boolean",
+                "detail": {
+                  "true": {
+                    "url": "http://testphp.vulnweb.com/userinfo.php",
+                    "params": [
+                      "uname",
+                      "pass"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "484b29d9",
+                    "status": 200,
+                    "size": 5971,
+                    "time_s": 0.526,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318473.html"
+                  },
+                  "false": {
+                    "url": "http://testphp.vulnweb.com/userinfo.php",
+                    "params": [
+                      "uname",
+                      "pass"
+                    ],
+                    "method": "POST",
+                    "payload": null,
+                    "payload_hash": "1072a64d",
+                    "status": 200,
+                    "size": 5597,
+                    "time_s": 0.772,
+                    "error_signatures": [],
+                    "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318474.html"
+                  },
+                  "diff_ratio": 0.1727178423236515,
+                  "size_diff": 374,
+                  "confidence": 0.9
+                }
+              },
+              {
+                "type": "sqli_time_suspected",
+                "detail": {
+                  "url": "http://testphp.vulnweb.com/userinfo.php",
+                  "params": [
+                    "uname",
+                    "pass"
+                  ],
+                  "method": "POST",
+                  "payload": null,
+                  "payload_hash": "c2dc8a88",
+                  "status": 200,
+                  "size": 5597,
+                  "time_s": 5.791,
+                  "error_signatures": [],
+                  "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318481.html"
+                }
+              }
+            ],
+            "results": [
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.536,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318362.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.537,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318362.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.516,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318363.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.523,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318363.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.524,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318364.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.531,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318364.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.525,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318365.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.548,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318365.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.571,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318366.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.561,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318366.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 2230,
+                "time_s": 0.535,
+                "error_signatures": [
+                  "SQL syntax",
+                  "You have an error in your SQL syntax",
+                  "MySQL"
+                ],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318367.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 2231,
+                "time_s": 0.53,
+                "error_signatures": [
+                  "SQL syntax",
+                  "You have an error in your SQL syntax",
+                  "MySQL"
+                ],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318368.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 2231,
+                "time_s": 0.536,
+                "error_signatures": [
+                  "SQL syntax",
+                  "You have an error in your SQL syntax",
+                  "MySQL"
+                ],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318368.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 2326,
+                "time_s": 0.552,
+                "error_signatures": [
+                  "SQL syntax",
+                  "You have an error in your SQL syntax",
+                  "MySQL"
+                ],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318369.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 2241,
+                "time_s": 0.528,
+                "error_signatures": [
+                  "SQL syntax",
+                  "You have an error in your SQL syntax",
+                  "MySQL"
+                ],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318369.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.53,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318370.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.529,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318370.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.523,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318371.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.518,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318371.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/search.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4732,
+                "time_s": 0.562,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318372.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.521,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318372.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.519,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318373.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.553,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318374.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.554,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318374.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.531,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318375.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.513,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318375.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.528,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318376.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.546,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318376.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.558,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318377.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.5,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318377.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.545,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318378.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.51,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318378.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.501,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318379.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.501,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318379.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.501,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318380.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.5,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318380.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.507,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318381.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.507,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318381.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.503,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318382.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/AJAX/index.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4236,
+                "time_s": 0.505,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_d67d60ec_1765318383.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.51,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318383.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.523,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318384.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.579,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318384.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.502,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318385.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.556,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318385.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.508,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318386.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.511,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318386.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.505,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318387.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.613,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318387.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.516,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318388.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.511,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318389.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.506,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318389.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.5,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318390.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.505,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318390.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.515,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318391.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.517,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318391.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.529,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318392.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.501,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318392.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.503,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318393.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/artists.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5328,
+                "time_s": 0.502,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_76d40c2e_1765318393.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.78,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318394.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.754,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318395.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.768,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318396.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.698,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318396.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.712,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318397.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.732,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318398.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.523,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318398.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.501,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318399.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.504,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318399.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.501,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318400.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.506,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318400.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.505,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318401.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.507,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318402.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.52,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318402.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.512,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318403.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.516,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318403.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.501,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318404.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.545,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318404.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.5,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318405.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/cart.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4903,
+                "time_s": 0.51,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_60953b37_1765318405.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.506,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318406.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.516,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318406.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.504,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318407.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.5,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318407.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.505,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318408.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.509,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318408.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.525,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318409.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.511,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318410.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.508,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318410.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.503,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318411.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.514,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318411.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.518,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318412.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.5,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318412.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.522,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318413.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.518,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318413.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.52,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318414.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.525,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318414.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.505,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318416.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.54,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318417.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/categories.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 6115,
+                "time_s": 0.725,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_379058a4_1765318417.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.549,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318418.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.52,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318419.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.492,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318419.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.496,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318420.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.502,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318420.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.491,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318421.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.493,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318421.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.503,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318422.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.489,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318422.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.494,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318423.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.487,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318423.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.495,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318424.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.491,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318424.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.493,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318425.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.494,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318425.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.489,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318426.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.493,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318426.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.5,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318427.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.486,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318427.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/disclaimer.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5524,
+                "time_s": 0.505,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_51685efd_1765318428.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.488,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318428.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.531,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318429.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.516,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318430.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.524,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318430.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.527,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318431.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.575,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318431.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.53,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318432.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.584,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318433.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.672,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318433.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.697,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318434.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.595,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318435.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.499,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318435.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.535,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318436.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.502,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318436.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.486,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318437.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.488,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318437.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.487,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318438.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.486,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318438.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.509,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318439.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/guestbook.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5391,
+                "time_s": 0.494,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a529c798_1765318439.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.487,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318440.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.496,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318440.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.487,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318441.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.488,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318441.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.49,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318442.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.507,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318442.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.488,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318443.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.489,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318443.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.524,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318444.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.506,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318444.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.511,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318445.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.515,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318446.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.488,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318446.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.506,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318447.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.535,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318447.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.501,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318448.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.49,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318448.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.494,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318449.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.523,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318450.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/index.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 4958,
+                "time_s": 0.489,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_94fcba4f_1765318450.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.488,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318451.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.531,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318451.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.5,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318452.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.528,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318452.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.488,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318453.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.487,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318453.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.64,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318454.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.608,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318455.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.488,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318455.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.487,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318456.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.501,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318456.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.551,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318457.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.639,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318457.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.505,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318458.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.491,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318458.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.576,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318459.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.528,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318459.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.539,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318460.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.487,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318460.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/login.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5523,
+                "time_s": 0.489,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_1e9c613a_1765318461.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.484,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318462.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.51,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318462.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.518,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318463.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.494,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318463.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.485,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318464.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.487,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318464.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.49,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318465.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.498,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318465.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.608,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318466.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.709,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318467.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.728,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318467.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.542,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318468.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.502,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318469.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.508,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318469.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.487,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318470.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.504,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318470.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.493,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318471.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.499,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318471.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.518,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318472.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/privacy.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 404,
+                "size": 16,
+                "time_s": 0.779,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_ae795fe3_1765318472.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 5971,
+                "time_s": 0.526,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318473.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 5597,
+                "time_s": 0.772,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318474.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 5597,
+                "time_s": 0.821,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318475.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 68,
+                "time_s": 0.518,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318475.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 5597,
+                "time_s": 5.791,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318481.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.522,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318482.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.653,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318482.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 6009,
+                "time_s": 1.162,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318484.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.617,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318484.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.499,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318485.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.505,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318485.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.818,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318486.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.502,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318487.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.502,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318487.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "searchFor"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.837,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318488.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "484b29d9",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.746,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318489.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "1072a64d",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.535,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318489.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "ef201c74",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.56,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318490.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "bcbace8b",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.858,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318491.html"
+              },
+              {
+                "url": "http://testphp.vulnweb.com/userinfo.php",
+                "params": [
+                  "message"
+                ],
+                "method": "POST",
+                "payload": null,
+                "payload_hash": "c2dc8a88",
+                "status": 200,
+                "size": 6009,
+                "time_s": 0.752,
+                "error_signatures": [],
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_88336e53_1765318492.html"
+              }
+            ]
+          }
+        },
+        "_id": {
+          "$oid": "69389f5c99f8c0b59cae2dea"
+        }
+      },
+      {
+        "vulnerabilityId": {
+          "$oid": "6924bed625b701cfedde27e0"
+        },
+        "vulnerabilityName": "TLS",
+        "severity": "Critical",
+        "isDetected": true,
+        "technicalDetail": {
+          "status": "ok",
+          "summary": {
+            "task_id": "scan-6924bed625b701cfedde27e0",
+            "base": "http://testphp.vulnweb.com/search.php",
+            "scan_time": 1765318387.0240602,
+            "findings_count": 4,
+            "stats": {
+              "xss_reflected": 4
+            },
+            "findings": [
+              {
+                "id": 1,
+                "type": "xss_reflected",
+                "method": "POST",
+                "param": "searchFor,goButton",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "severity": "medium",
+                "context": "html_tag",
+                "payload_kind": "img_onerror",
+                "evidence_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318377.html"
+              },
+              {
+                "id": 2,
+                "type": "xss_reflected",
+                "method": "POST",
+                "param": "searchFor,goButton",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "severity": "medium",
+                "context": "html_tag",
+                "payload_kind": "svg_onload",
+                "evidence_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318377.html"
+              },
+              {
+                "id": 3,
+                "type": "xss_reflected",
+                "method": "POST",
+                "param": "searchFor,goButton",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "severity": "high",
+                "context": "attribute",
+                "payload_kind": "attr_break_onfocus",
+                "evidence_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318378.html"
+              },
+              {
+                "id": 4,
+                "type": "xss_reflected",
+                "method": "POST",
+                "param": "searchFor,goButton",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "severity": "high",
+                "context": "script",
+                "payload_kind": "script_break",
+                "evidence_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318378.html"
+              }
+            ],
+            "results": [
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "id",
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318361.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "id",
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318362.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "id",
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318362.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "id",
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318363.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "q",
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318363.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "q",
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318364.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "q",
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318364.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "q",
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318365.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "query",
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318365.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "query",
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318366.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "query",
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318366.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "query",
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318367.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "s",
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318367.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "s",
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318368.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "s",
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318368.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "s",
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318369.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "search",
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318369.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "search",
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318370.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "search",
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318370.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "search",
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318371.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "searchFor",
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318371.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "searchFor",
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318372.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "searchFor",
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318372.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "searchFor",
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318373.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "term",
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318373.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "term",
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318374.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "term",
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318374.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "term",
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318375.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "test",
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318375.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "test",
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318375.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "test",
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318376.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_get",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "GET",
+                "param": "test",
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318376.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "searchFor",
+                  "goButton"
+                ],
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318377.html",
+                "found_raw": true,
+                "found_escaped": false,
+                "context": "html_tag"
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "searchFor",
+                  "goButton"
+                ],
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318377.html",
+                "found_raw": true,
+                "found_escaped": false,
+                "context": "html_tag"
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "searchFor",
+                  "goButton"
+                ],
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318378.html",
+                "found_raw": true,
+                "found_escaped": false,
+                "context": "attribute"
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "searchFor",
+                  "goButton"
+                ],
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318378.html",
+                "found_raw": true,
+                "found_escaped": false,
+                "context": "script"
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "search"
+                ],
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318379.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "search"
+                ],
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318379.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "search"
+                ],
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318380.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "search"
+                ],
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318380.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "message"
+                ],
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318381.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "message"
+                ],
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318381.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "message"
+                ],
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318382.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "message"
+                ],
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318382.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318383.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318384.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318384.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "username",
+                  "password"
+                ],
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318385.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "payload_kind": "img_onerror",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318385.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "payload_kind": "svg_onload",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318386.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "payload_kind": "attr_break_onfocus",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318386.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              },
+              {
+                "type": "reflected_post",
+                "url": "http://testphp.vulnweb.com/search.php",
+                "method": "POST",
+                "params": [
+                  "uname",
+                  "pass"
+                ],
+                "payload_kind": "script_break",
+                "status": 200,
+                "saved_file": "F:\\CSIS\\Fourth year\\Final Project\\second version for backend\\scan_results\\resp_testphp.vulnweb.com_a3676990_1765318387.html",
+                "found_raw": false,
+                "found_escaped": false,
+                "context": null
+              }
+            ]
+          }
+        },
+        "_id": {
+          "$oid": "69389f5c99f8c0b59cae2deb"
+        }
+      }
+    ],
+    "scanDate": {
+      "$date": "2025-12-09T22:14:52.471Z"
+    },
+    "createdAt": {
+      "$date": "2025-12-09T22:14:52.474Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-09T22:14:52.474Z"
+    },
+    "__v": 0
+  }

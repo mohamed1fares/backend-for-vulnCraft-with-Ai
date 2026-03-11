@@ -1,0 +1,211 @@
+/* VulnCraft Security Report Styles - Diamond Edition */
+
+/* 1. Reset & Global Styles */
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    color: #2c3e50; /* لون كحلي غامق بدل الأسود الصريح */
+    line-height: 1.6;
+    padding: 40px;
+    background-color: #ffffff;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 2. Headings - The Corporate Look */
+h1 {
+    color: #1a252f;
+    text-align: center;
+    font-size: 32px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 3px solid #e74c3c; /* الخط الأحمر المميز */
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+    page-break-after: avoid; /* ممنوع العنوان يجي في آخر الصفحة لوحده */
+}
+
+h2 {
+    color: #2980b9;
+    font-size: 22px;
+    border-left: 5px solid #3498db;
+    background: linear-gradient(to right, #f4f8fb, #ffffff); /* تدرج خفيف */
+    padding: 10px 15px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-radius: 0 5px 5px 0;
+    page-break-after: avoid;
+}
+
+h3 {
+    color: #7f8c8d;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 25px;
+    border-bottom: 1px solid #ecf0f1;
+    padding-bottom: 5px;
+}
+
+/* 3. Tables - Professional Data Presentation */
+table {
+    width: 100%;
+    border-collapse: collapse; /* مهم عشان البوردر يبان متصل */
+    margin: 25px 0;
+    font-size: 14px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* ظل ناعم */
+    border-radius: 8px;
+    overflow: hidden; /* عشان الكيرف يبان */
+    page-break-inside: avoid; /* الجدول ميتقسمش نصين قدر الإمكان */
+}
+
+thead tr {
+    background-color: #2c3e50;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #f8f9fa;
+}
+
+tbody tr:hover {
+    background-color: #eaf2f8; /* هايلايت لما الماوس يجي عليه */
+    transition: background-color 0.2s ease;
+}
+
+/* 4. Severity Indicators (Visual Cues) */
+/* بنستخدم CSS Selectors ذكية عشان نلون الصفوف حسب الكلمة */
+
+/* أي خلية فيها كلمة Critical تتلون أحمر خفيف */
+td:contains('Critical'), span.critical {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+td:contains('High'), span.high {
+    color: #e67e22;
+    font-weight: bold;
+}
+
+td:contains('Medium'), span.medium {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+/* 5. Code Blocks - Hacker Style */
+pre {
+    background-color: #282c34; /* خلفية غامقة زي VS Code */
+    color: #abb2bf;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 20px 0;
+    border-left: 5px solid #e74c3c; /* خط جمالي */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+code {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9em;
+}
+
+/* الكود الصغير اللي جوه السطر */
+p code {
+    background-color: #f0f0f0;
+    color: #c7254e;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #e1e1e8;
+}
+
+/* 6. Typography & Text */
+p {
+    margin-bottom: 16px;
+    text-align: justify;
+    line-height: 1.7;
+}
+
+blockquote {
+    border-left: 4px solid #3498db;
+    background-color: #f1f9ff;
+    padding: 15px 20px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #57606f;
+    border-radius: 4px;
+}
+
+ul, ol {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* 7. Metadata Box (The YAML Header) */
+/* الـ Markdown بيحول الخطوط --- لـ hr */
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    margin: 30px 0;
+}
+
+/* 8. The Footer (VulnCraft Branding) */
+div[align="center"] {
+    margin-top: 60px;
+    padding: 20px;
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    border-radius: 8px;
+    font-size: 0.9em;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+div[align="center"] strong {
+    color: #fff;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+
+div[align="center"] em {
+    color: #ecf0f1;
+    font-style: normal;
+    opacity: 0.9;
+}
+
+/* 9. Print Optimizations (Important for PDF) */
+@media print {
+    body {
+        padding: 0;
+        font-size: 12pt;
+    }
+
+    h2 {
+        background: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    pre {
+        background-color: #f8f8f8; /* نوفر حبر في الطباعة */
+        color: #333;
+        border: 1px solid #ddd;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    /* منع الجداول من الانقسام */
+    table, pre, blockquote {
+        page-break-inside: avoid;
+    }
+}
