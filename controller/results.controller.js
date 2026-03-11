@@ -12,6 +12,7 @@ const Vulnerability = require("../model/vulnerability.model");
 
 // --- 1. إعداد المسارات ---
 const SCRIPTS_DIR = path.join(__dirname, "../vulnerabilityFiles");
+const ADVANCED_DIR = path.join(__dirname, "../vulnerabilityFilesAdvanced");
 const OUTPUT_DIR = path.join(__dirname, "../scan_results");
 const TEMP_DIR = path.join(__dirname, "../temp_payloads");
 
@@ -30,24 +31,49 @@ const SEVERITY_RANK = {
 
 // --- 2. دوال المساعدة (Helpers) ---
 
+// let cachedPythonCommand = null;
+
+// function getPythonCommand() {
+//     // لو عرفنا الأمر قبل كده، نرجعه علطول ومندورش تاني
+//     if (cachedPythonCommand) return cachedPythonCommand;
+
+//     const commandsToCheck = ['python3', 'python', 'py']; 
+//     for (const cmd of commandsToCheck) {
+//         try {
+//             execSync(`${cmd} --version`, { stdio: 'ignore' });
+//             cachedPythonCommand = cmd; // احفظ النتيجة
+//             return cmd; 
+//         } catch (error) { continue; }
+//     }
+//     // Fallback
+//     cachedPythonCommand = process.platform === "win32" ? "py" : "python3";
+//     return cachedPythonCommand;
+// }
+
 let cachedPythonCommand = null;
 
 function getPythonCommand() {
-    // لو عرفنا الأمر قبل كده، نرجعه علطول ومندورش تاني
     if (cachedPythonCommand) return cachedPythonCommand;
 
-    const commandsToCheck = ['python3', 'python', 'py']; 
+    // في لينكس الأولوية لـ python3
+    const commandsToCheck = process.platform === "win32" ? ['py', 'python'] : ['python3', 'python']; 
+    
     for (const cmd of commandsToCheck) {
         try {
-            execSync(`${cmd} --version`, { stdio: 'ignore' });
-            cachedPythonCommand = cmd; // احفظ النتيجة
-            return cmd; 
+            // بنجرب نجيب المسار الكامل للأمر عشان نضمن إن spawn يشوفه
+            const fullPath = execSync(process.platform === "win32" ? `where ${cmd}` : `which ${cmd}`).toString().trim().split('\n')[0];
+            if (fullPath) {
+                cachedPythonCommand = fullPath;
+                return fullPath;
+            }
         } catch (error) { continue; }
     }
-    // Fallback
-    cachedPythonCommand = process.platform === "win32" ? "py" : "python3";
+    // Fallback أخير
+    cachedPythonCommand = process.platform === "win32" ? "py" : "/usr/bin/python3";
     return cachedPythonCommand;
 }
+
+
 
 function createTempPayload(targetUrl, vulnId) {
   const filename = `payload_${vulnId}_${Date.now()}.json`;
@@ -62,38 +88,91 @@ function createTempPayload(targetUrl, vulnId) {
   return filePath;
 }
 
+// function runScriptWorker(scriptFullPath, payloadPath, pythonCmd) {
+//   return new Promise((resolve) => {
+//     if (!fs.existsSync(scriptFullPath)) {
+//       return resolve({ error: "Script file missing", vulnerable: false });
+//     }
+
+//     const cmd = pythonCmd || "python"; 
+//     const python = spawn(cmd, [
+//       "-u", scriptFullPath, "--payload", payloadPath, "--outdir", OUTPUT_DIR
+//     ], {
+//       cwd: path.dirname(scriptFullPath) // بيخلي "مكان العمل" هو فولدر السكريبت
+//     });
+    
+//     const TIMEOUT_MS = 7 * 60 * 1000; 
+
+// const timeout = setTimeout(() => {
+//     python.kill(); // اقتل العملية
+//     console.error(`[Timeout] Script took too long: ${scriptFullPath}`);
+//     resolve({ error: "Scan timeout exceeded", vulnerable: false });
+// }, TIMEOUT_MS);
+
+//     let outputData = "";
+    
+//     python.stdout.on("data", (data) => { outputData += data.toString(); });
+//     python.stderr.on("data", (err) => console.error(`[Py Log]: ${err}`)); 
+
+//     python.on("error", (err) => {
+//        console.error(`[Spawn Error]: ${err.message}`);
+//        resolve({ error: "Spawn failed", vulnerable: false });
+//     });
+
+//     python.on("close", (code) => {
+//       clearTimeout(timeout);
+//       try { fs.unlinkSync(payloadPath); } catch (e) {} 
+//       try {
+//         const firstBrace = outputData.indexOf("{");
+//         const lastBrace = outputData.lastIndexOf("}");
+//         if (firstBrace !== -1 && lastBrace !== -1) {
+//             const jsonStr = outputData.substring(firstBrace, lastBrace + 1);
+//             resolve(JSON.parse(jsonStr));
+//         } else {
+//             resolve({ error: "No JSON output", vulnerable: false });
+//         }
+//       } catch (e) {
+//         resolve({ error: "JSON Parse Error", vulnerable: false });
+//       }
+//     });
+//   });
+// }
+
 function runScriptWorker(scriptFullPath, payloadPath, pythonCmd) {
   return new Promise((resolve) => {
     if (!fs.existsSync(scriptFullPath)) {
       return resolve({ error: "Script file missing", vulnerable: false });
     }
 
-    const cmd = pythonCmd || "python"; 
-    const python = spawn(cmd, [
+    // استخدمنا spawn مع المسار الكامل للـ python
+    const python = spawn(pythonCmd, [
       "-u", scriptFullPath, "--payload", payloadPath, "--outdir", OUTPUT_DIR
-    ]);
-
+    ], {
+      cwd: path.dirname(scriptFullPath),
+      env: { ...process.env, PYTHONUNBUFFERED: "1" } // عشان يبعت الـ logs أول بأول
+    });
+    
     const TIMEOUT_MS = 7 * 60 * 1000; 
-
-const timeout = setTimeout(() => {
-    python.kill(); // اقتل العملية
-    console.error(`[Timeout] Script took too long: ${scriptFullPath}`);
-    resolve({ error: "Scan timeout exceeded", vulnerable: false });
-}, TIMEOUT_MS);
+    const timeout = setTimeout(() => {
+        python.kill();
+        logger.error(`[Timeout] Script took too long: ${scriptFullPath}`);
+        resolve({ error: "Scan timeout exceeded", vulnerable: false });
+    }, TIMEOUT_MS);
 
     let outputData = "";
+    let errorData = ""; // عشان نجمع أخطاء بايثون
     
     python.stdout.on("data", (data) => { outputData += data.toString(); });
-    python.stderr.on("data", (err) => console.error(`[Py Log]: ${err}`)); 
-
-    python.on("error", (err) => {
-       console.error(`[Spawn Error]: ${err.message}`);
-       resolve({ error: "Spawn failed", vulnerable: false });
-    });
+    python.stderr.on("data", (data) => { errorData += data.toString(); }); 
 
     python.on("close", (code) => {
       clearTimeout(timeout);
       try { fs.unlinkSync(payloadPath); } catch (e) {} 
+
+      if (code !== 0) {
+          logger.error(`[Py Error] Script ${path.basename(scriptFullPath)} failed with code ${code}: ${errorData}`);
+      }
+
       try {
         const firstBrace = outputData.indexOf("{");
         const lastBrace = outputData.lastIndexOf("}");
@@ -101,16 +180,19 @@ const timeout = setTimeout(() => {
             const jsonStr = outputData.substring(firstBrace, lastBrace + 1);
             resolve(JSON.parse(jsonStr));
         } else {
-            resolve({ error: "No JSON output", vulnerable: false });
+            resolve({ error: "No JSON output", pythonError: errorData, vulnerable: false });
         }
       } catch (e) {
-        resolve({ error: "JSON Parse Error", vulnerable: false });
+        resolve({ error: "JSON Parse Error", rawOutput: outputData, vulnerable: false });
       }
     });
   });
 }
 
-// --- 3. دالة الفحص الرئيسية (scanAll) ---
+
+
+
+
 exports.scanAll = async (req, res) => {
   try {
     const { urlId } = req.body; 
@@ -119,7 +201,7 @@ exports.scanAll = async (req, res) => {
         return res.status(400).json({ message: "URL ID is required" });
     }
 
-    // 🔥🔥 التعديل هنا: إضافة .populate('user') 🔥🔥
+    // جلب بيانات الرابط واليوزر
     let urlDoc = await Url.findById(urlId).populate('user');
 
     if (!urlDoc) {
@@ -128,7 +210,7 @@ exports.scanAll = async (req, res) => {
 
     const targetUrlString = urlDoc.originalUrl;
 
-    // تحديث الحالة
+    // تحديث الحالة لبدء الفحص
     urlDoc.status = 'Scanning';
     urlDoc.numberOfvuln = 0;
     urlDoc.severity = 'safe';
@@ -142,17 +224,35 @@ exports.scanAll = async (req, res) => {
     }
 
     const pythonCommand = getPythonCommand();
-    // console.log(`🚀 Starting Scan using [${pythonCommand}] for: ${targetUrlString} (ID: ${urlId})`);
 
-    // تشغيل الفحص
+    // تشغيل الفحص المتوازي
     const scanPromises = vulnerabilities.map(async (vuln) => {
       let scriptFileName = vuln.scriptFile ? vuln.scriptFile : vuln.name.trim() + ".py";
       scriptFileName = path.basename(scriptFileName);
       
-      const scriptFullPath = path.join(SCRIPTS_DIR, scriptFileName);
+      const pathInNormal = path.join(SCRIPTS_DIR, scriptFileName);
+      const pathInAdvanced = path.join(ADVANCED_DIR, scriptFileName);
       const payloadPath = createTempPayload(targetUrlString, vuln._id);
 
-      const scriptResult = await runScriptWorker(scriptFullPath, payloadPath, pythonCommand);
+      // اختيار المسار الصحيح بناءً على الوجود الفعلي للملف
+      let finalScriptPath = null;
+      if (fs.existsSync(pathInAdvanced)) {
+          finalScriptPath = pathInAdvanced;
+      } else if (fs.existsSync(pathInNormal)) {
+          finalScriptPath = pathInNormal;
+      }
+
+      if (!finalScriptPath) {
+          return {
+            vulnerabilityId: vuln._id,
+            vulnerabilityName: vuln.name,
+            severity: vuln.severity,
+            isDetected: false,
+            technicalDetail: { error: "Script not found in any directory" }
+          };
+      }
+
+      const scriptResult = await runScriptWorker(finalScriptPath, payloadPath, pythonCommand);
 
       let isDetected = false;
       if (scriptResult && !scriptResult.error) {
@@ -161,8 +261,6 @@ exports.scanAll = async (req, res) => {
         else if (Array.isArray(scriptResult.findings) && scriptResult.findings.length > 0) isDetected = true;
       }
 
-      // console.log(`Checking ${vuln.name}: ${isDetected ? "DETECTED 🔴" : "Safe 🟢"}`);
-
       return {
         vulnerabilityId: vuln._id,
         vulnerabilityName: vuln.name,
@@ -170,11 +268,12 @@ exports.scanAll = async (req, res) => {
         isDetected: isDetected,
         technicalDetail: scriptResult 
       };
-    });
+    }); // <--- نهاية الـ map الصحيحة
 
+    // تنفيذ الوعود وانتظار النتائج
     const resultsArray = await Promise.all(scanPromises);
 
-    // الحسابات النهائية
+    // الحسابات النهائية للتقرير
     let detectedCount = 0;
     let maxSeverityRank = 0;
     let finalSeverity = 'safe';
@@ -185,12 +284,12 @@ exports.scanAll = async (req, res) => {
         const currentRank = SEVERITY_RANK[item.severity] || 0;
         if (currentRank > maxSeverityRank) {
           maxSeverityRank = currentRank;
-          finalSeverity = item.severity === 'Low' ? 'low' : item.severity;
+          finalSeverity = item.severity;
         }
       }
     });
 
-    // حفظ التقرير
+    // حفظ التقرير في الداتابيز
     const newReport = new Report({
         url: urlDoc._id,
         summary: {
@@ -202,56 +301,24 @@ exports.scanAll = async (req, res) => {
 
     await newReport.save();
 
-    // تحديث الرابط
+    // تحديث حالة الرابط النهائية
     urlDoc.status = 'Finished';
     urlDoc.numberOfvuln = detectedCount;
     urlDoc.severity = detectedCount > 0 ? finalSeverity : 'safe';
+    const serverIP = "188.239.55.189"; // الـ IP بتاعك
     await urlDoc.save();
 
-    if(logger && logger.info) logger.info(`Scan completed successfully for ID: ${urlDoc._id}`);
-    
-    // 🔥 إرسال الإيميل (الآن سيعمل لأن urlDoc.user ممتلئ بالبيانات) 🔥
+    // إرسال الإيميل للمستخدم
     if (urlDoc.user && urlDoc.user.email) {
       try {
-        // رابط التقرير في الفرونت إند
-        const reportLink = `http://localhost:4200/result/${urlId}`;
-        
-        // نص الرسالة العادي
-        const message = `Scan finished for ${urlDoc.originalUrl}. We found ${detectedCount} issues.`;
-        
+        // const reportLink = `http://localhost:4200/result/${urlId}`;
+        const reportLink = `http://${serverIP}:4200/result/${urlId}`;
         await sendEmail({
             email: urlDoc.user.email,
-            subject: '🔍 Security Scan Completed',
-            message: message, // ده بيظهر لو الإيميل مش بيدعم HTML (نادر جداً)
-            
-            // 🔥 تصميم الـ HTML (حسنت الشكل شوية عشان الرقم يظهر)
-            html: `
-              <div style="font-family: Arial, sans-serif; padding: 20px; color: #333; border: 1px solid #eee; border-radius: 10px;">
-                <h2 style="color: #4c6ef5;">Scan Completed Successfully!</h2>
-                <p>Hello,</p>
-                <p>The security scan for target: <strong>${urlDoc.originalUrl}</strong> has finished.</p>
-                
-                <p style="font-size: 16px;">
-                   Total Issues Found: <strong style="color: #ff003c; font-size: 18px;">${detectedCount}</strong>
-                </p>
-
-                <p>You can view the full detailed report on your dashboard.</p>
-                <br>
-                <div style="text-align: center; margin: 20px 0;">
-                    <a href="${reportLink}" style="background: #4c6ef5; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold;">View Full Report</a>
-                </div>
-                <br>
-                <hr style="border: 0; border-top: 1px solid #eee;">
-                <p style="font-size: 12px; color: #777; text-align: center;">SecuScan Automated System</p>
-              </div>
-            `
+            subject: '🔍 VulnCraft: Security Scan Completed',
+            html: `<h3>Your report is ready!</h3><p>Found ${detectedCount} vulnerabilities.</p><a href="${reportLink}">View Full Report</a>`
         });
-        // console.log(`✅ Email sent to ${urlDoc.user.email} with count: ${detectedCount}`);
-      } catch (emailError) {
-          console.error("❌ Failed to send email:", emailError.message);
-      }
-    } else {
-        console.warn("⚠️ User email not found.");
+      } catch (err) { console.error("Email error:", err.message); }
     }
 
     return res.status(200).json({
@@ -262,16 +329,11 @@ exports.scanAll = async (req, res) => {
     });
 
   } catch (error) {
-    if(logger && logger.warn) logger.warn(`Scan Error: ${error.message}`);
-    console.error("Scan Error:", error);
-    
-    if (req.body.urlId) {
-        await Url.findByIdAndUpdate(req.body.urlId, { status: 'Failed' });
-    }
-    return res.status(500).json({ message: "Internal Server Error", error: error.message });
+    console.error("Scan error:", error);
+    if (req.body.urlId) await Url.findByIdAndUpdate(req.body.urlId, { status: 'Failed' });
+    return res.status(500).json({ message: "Server Error", error: error.message });
   }
 };
-
 // --- دوال الجلب الإضافية ---
 
 exports.getAllReports = async (req, res) => {

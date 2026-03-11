@@ -1,4 +1,4 @@
-const DemoVideo = require('../model/Demovideo.model'); // تأكد من اسم الملف
+const DemoVideo = require('../model/demovideo.model'); // تأكد من اسم الملف
 const logger = require('../utils/logger.utils');
 const fs = require('fs');
 const path = require('path');
