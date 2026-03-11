@@ -1,3 +1,381 @@
+// const fs = require('fs-extra'); // استخدمنا fs-extra عشان هو الأقوى
+// const path = require('path');
+// const mongoose = require("mongoose");
+// const { spawn, execSync } = require("child_process");
+// const markdownpdf = require('markdown-pdf');
+
+// // --- 1. استدعاء الأدوات والخدمات ---
+// const AppError = require('../utils/app.error-utils');
+// const logger = require('../utils/logger.utils');
+// const sendEmail = require('../utils/email.utils');
+
+// // 👇 استدعاء خدمات الـ AI (لاحظ تعديل المسار للدخول لفولدر aiModel)
+// const { prepareDataForAI } = require('../aiModel/src/utils/ai-cleaner.utils');
+// const { generateReportContent } = require('../aiModel/src/utils/ollama.service');
+
+// // --- 2. استدعاء الموديلات ---
+// const Url = require("../model/url.model");
+// const Report = require("../model/results.model"); 
+// const Vulnerability = require("../model/vulnerability.model");
+
+// // --- 3. إعداد المسارات الثابتة ---
+// const SCRIPTS_DIR = path.join(__dirname, "../vulnerabilityFiles");
+// const OUTPUT_DIR = path.join(__dirname, "../scan_results");
+// const TEMP_DIR = path.join(__dirname, "../temp_payloads");
+// const PDF_REPORTS_DIR = path.join(__dirname, "../reports"); // مكان حفظ الـ PDF
+
+// // إنشاء المجلدات لو مش موجودة
+// fs.ensureDirSync(OUTPUT_DIR);
+// fs.ensureDirSync(TEMP_DIR);
+// fs.ensureDirSync(PDF_REPORTS_DIR);
+
+// // --- ترتيب خطورة الثغرات ---
+// const SEVERITY_RANK = {
+//   'safe': 0,
+//   'Low': 1, 'low': 1,
+//   'Medium': 2,
+//   'High': 3,
+//   'Critical': 4
+// };
+
+// // ============================================================
+// // الجزء الأول: دوال المساعدة (Helpers)
+// // ============================================================
+
+// let cachedPythonCommand = null;
+
+// function getPythonCommand() {
+//     if (cachedPythonCommand) return cachedPythonCommand;
+//     const commandsToCheck = ['python3', 'python', 'py']; 
+//     for (const cmd of commandsToCheck) {
+//         try {
+//             execSync(`${cmd} --version`, { stdio: 'ignore' });
+//             cachedPythonCommand = cmd;
+//             return cmd; 
+//         } catch (error) { continue; }
+//     }
+//     cachedPythonCommand = process.platform === "win32" ? "py" : "python3";
+//     return cachedPythonCommand;
+// }
+
+// function createTempPayload(targetUrl, vulnId) {
+//   const filename = `payload_${vulnId}_${Date.now()}.json`;
+//   const filePath = path.join(TEMP_DIR, filename);
+//   const taskData = {
+//     task_id: `scan-${vulnId}`,
+//     target: { url: targetUrl },
+//     base_url: targetUrl,
+//     options: { non_destructive: true },
+//   };
+//   fs.writeFileSync(filePath, JSON.stringify(taskData, null, 2));
+//   return filePath;
+// }
+
+// function runScriptWorker(scriptFullPath, payloadPath, pythonCmd) {
+//   return new Promise((resolve) => {
+//     if (!fs.existsSync(scriptFullPath)) {
+//       return resolve({ error: "Script file missing", vulnerable: false });
+//     }
+
+//     const cmd = pythonCmd || "python"; 
+//     const python = spawn(cmd, [
+//       "-u", scriptFullPath, "--payload", payloadPath, "--outdir", OUTPUT_DIR
+//     ]);
+
+//     const TIMEOUT_MS = 7 * 60 * 1000; // 7 دقائق
+
+//     const timeout = setTimeout(() => {
+//         python.kill();
+//         console.error(`[Timeout] Script took too long: ${scriptFullPath}`);
+//         resolve({ error: "Scan timeout exceeded", vulnerable: false });
+//     }, TIMEOUT_MS);
+
+//     let outputData = "";
+    
+//     python.stdout.on("data", (data) => { outputData += data.toString(); });
+//     python.stderr.on("data", (err) => console.error(`[Py Log]: ${err}`)); 
+
+//     python.on("error", (err) => {
+//        console.error(`[Spawn Error]: ${err.message}`);
+//        resolve({ error: "Spawn failed", vulnerable: false });
+//     });
+
+//     python.on("close", (code) => {
+//       clearTimeout(timeout);
+//       try { fs.unlinkSync(payloadPath); } catch (e) {} 
+//       try {
+//         const firstBrace = outputData.indexOf("{");
+//         const lastBrace = outputData.lastIndexOf("}");
+//         if (firstBrace !== -1 && lastBrace !== -1) {
+//             const jsonStr = outputData.substring(firstBrace, lastBrace + 1);
+//             resolve(JSON.parse(jsonStr));
+//         } else {
+//             resolve({ error: "No JSON output", vulnerable: false });
+//         }
+//       } catch (e) {
+//         resolve({ error: "JSON Parse Error", vulnerable: false });
+//       }
+//     });
+//   });
+// }
+
+// // ============================================================
+// // الجزء الثاني: دالة الفحص الرئيسية (scanAll)
+// // ============================================================
+// exports.scanAll = async (req, res) => {
+//   try {
+//     const { urlId } = req.body; 
+
+//     if (!urlId) {
+//         return res.status(400).json({ message: "URL ID is required" });
+//     }
+
+//     let urlDoc = await Url.findById(urlId).populate('user');
+
+//     if (!urlDoc) {
+//       return res.status(404).json({ message: "URL document not found." });
+//     }
+
+//     const targetUrlString = urlDoc.originalUrl;
+
+//     // تحديث الحالة
+//     urlDoc.status = 'Scanning';
+//     urlDoc.numberOfvuln = 0;
+//     urlDoc.severity = 'safe';
+//     await urlDoc.save();
+
+//     const vulnerabilities = await Vulnerability.find({ isActive: true });
+//     if (vulnerabilities.length === 0) {
+//       urlDoc.status = 'Finished';
+//       await urlDoc.save();
+//       return res.status(404).json({ message: "No active vulnerabilities found." });
+//     }
+
+//     const pythonCommand = getPythonCommand();
+//     console.log(`🚀 Starting Scan using [${pythonCommand}] for: ${targetUrlString}`);
+
+//     // تشغيل الفحص
+//     const scanPromises = vulnerabilities.map(async (vuln) => {
+//       let scriptFileName = vuln.scriptFile ? vuln.scriptFile : vuln.name.trim() + ".py";
+//       scriptFileName = path.basename(scriptFileName);
+      
+//       const scriptFullPath = path.join(SCRIPTS_DIR, scriptFileName);
+//       const payloadPath = createTempPayload(targetUrlString, vuln._id);
+
+//       const scriptResult = await runScriptWorker(scriptFullPath, payloadPath, pythonCommand);
+
+//       let isDetected = false;
+//       if (scriptResult && !scriptResult.error) {
+//         if (scriptResult.summary && scriptResult.summary.findings_count > 0) isDetected = true;
+//         else if (scriptResult.vulnerable === true) isDetected = true;
+//         else if (Array.isArray(scriptResult.findings) && scriptResult.findings.length > 0) isDetected = true;
+//       }
+
+//       console.log(`Checking ${vuln.name}: ${isDetected ? "DETECTED 🔴" : "Safe 🟢"}`);
+
+//       return {
+//         vulnerabilityId: vuln._id,
+//         vulnerabilityName: vuln.name,
+//         severity: vuln.severity,
+//         isDetected: isDetected,
+//         technicalDetail: scriptResult 
+//       };
+//     });
+
+//     const resultsArray = await Promise.all(scanPromises);
+
+//     // الحسابات النهائية
+//     let detectedCount = 0;
+//     let maxSeverityRank = 0;
+//     let finalSeverity = 'safe';
+
+//     resultsArray.forEach(item => {
+//       if (item.isDetected) {
+//         detectedCount++;
+//         const currentRank = SEVERITY_RANK[item.severity] || 0;
+//         if (currentRank > maxSeverityRank) {
+//           maxSeverityRank = currentRank;
+//           finalSeverity = item.severity === 'Low' ? 'low' : item.severity;
+//         }
+//       }
+//     });
+
+//     // حفظ التقرير
+//     const newReport = new Report({
+//         url: urlDoc._id,
+//         summary: {
+//             totalVulnerabilities: detectedCount,
+//             highestSeverity: finalSeverity
+//         },
+//         details: resultsArray
+//     });
+
+//     await newReport.save();
+
+//     // تحديث الرابط
+//     urlDoc.status = 'Finished';
+//     urlDoc.numberOfvuln = detectedCount;
+//     urlDoc.severity = detectedCount > 0 ? finalSeverity : 'safe';
+//     await urlDoc.save();
+
+//     if(logger && logger.info) logger.info(`Scan completed for ID: ${urlDoc._id}`);
+    
+//     // إرسال الإيميل
+//     if (urlDoc.user && urlDoc.user.email) {
+//       try {
+//         const reportLink = `http://localhost:4200/result/${urlId}`;
+//         const message = `Scan finished for ${urlDoc.originalUrl}. Found ${detectedCount} issues.`;
+        
+//         await sendEmail({
+//             email: urlDoc.user.email,
+//             subject: '🔍 Security Scan Completed',
+//             message: message,
+//             html: `
+//               <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #eee;">
+//                 <h2 style="color: #4c6ef5;">Scan Completed Successfully!</h2>
+//                 <p>Target: <strong>${urlDoc.originalUrl}</strong></p>
+//                 <p style="font-size: 16px;">
+//                    Total Issues Found: <strong style="color: #ff003c;">${detectedCount}</strong>
+//                 </p>
+//                 <div style="text-align: center; margin: 20px 0;">
+//                     <a href="${reportLink}" style="background: #4c6ef5; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">View Full Report</a>
+//                 </div>
+//               </div>
+//             `
+//         });
+//       } catch (emailError) {
+//           console.error("❌ Failed to send email:", emailError.message);
+//       }
+//     }
+
+//     return res.status(200).json({
+//       message: "Scan completed successfully",
+//       reportId: newReport._id,
+//       summary: newReport.summary,
+//       results: resultsArray
+//     });
+
+//   } catch (error) {
+//     if(logger && logger.warn) logger.warn(`Scan Error: ${error.message}`);
+//     console.error("Scan Error:", error);
+    
+//     if (req.body.urlId) {
+//         await Url.findByIdAndUpdate(req.body.urlId, { status: 'Failed' });
+//     }
+//     return res.status(500).json({ message: "Internal Server Error", error: error.message });
+//   }
+// };
+
+// // ============================================================
+// // الجزء الثالث: دوال الجلب (Get Reports)
+// // ============================================================
+
+// exports.getAllReports = async (req, res) => {
+//   try {
+//     const reports = await Report.find()
+//       .sort({ scanDate: -1 }) 
+//       .populate("url", "originalUrl");
+//     res.status(200).json(reports);
+//   } catch (error) {
+//     res.status(500).json({ message: "Server Error", error: error.message });
+//   }
+// };
+
+// exports.getReportsByUrl = async (req, res) => {
+//   try {
+//     const { id } = req.params; // urlId
+//     const currentUserId = req.user._id; 
+//     const currentUserRole = req.user.role; 
+
+//     const urlDoc = await Url.findById(id);
+
+//     if (!urlDoc) {
+//         return res.status(404).json({ message: "URL not found" });
+//     }
+
+//     if (urlDoc.user.toString() !== currentUserId.toString() && currentUserRole !== 'admin') {
+//         return res.status(403).json({ message: "⛔ Access Denied" });
+//     }
+
+//     const reports = await Report.find({ url: id })
+//       .sort({ scanDate: -1 }) 
+//       .populate("url", "originalUrl");
+      
+//     res.status(200).json({ message: "Success", data: reports });
+
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// };
+
+// exports.getReportById = async (req, res) => {
+//     try {
+//         const { reportId } = req.params;
+//         const report = await Report.findById(reportId).populate("url", "originalUrl"); 
+//         if (!report) return res.status(404).json({ message: "Report not found" });
+//         res.status(200).json({ data: report });
+//     } catch (err) {
+//         res.status(500).json({ error: err.message });
+//     }
+// };
+
+// // ============================================================
+// // الجزء الرابع: الـ AI والـ PDF (الإضافة الجديدة) 🔥
+// // ============================================================
+
+// exports.generateAndDownloadPDF = async (req, res, next) => {
+//     const { reportId } = req.params; 
+
+//     try {
+//         if(logger) logger.info(`📄 Requesting PDF for Report ID: ${reportId}`);
+
+//         // 1. جلب التقرير
+//         const report = await Report.findById(reportId).populate('url');
+        
+//         if (!report) {
+//             return res.status(404).json({ message: "Report not found" });
+//         }
+
+//         const targetUrl = report.url ? report.url.originalUrl : "Unknown Target";
+
+//         // 2. تجهيز البيانات (Support for both Array and Object structures)
+//         const scanDetails = report.details ? report.details : report;
+//         const cleanedData = prepareDataForAI(scanDetails);
+
+//         // 3. التوليد بالذكاء الاصطناعي
+//         console.log("🤖 AI is writing the report...");
+//         const markdownContent = await generateReportContent(targetUrl, cleanedData);
+
+//         // 4. تحويل لـ PDF
+//         const reportPath = path.join(PDF_REPORTS_DIR, `Report_${reportId}.pdf`);
+        
+//         // إعداد ملف الـ CSS (لاحظ المسار النسبي الجديد)
+//         const cssPath = path.join(__dirname, '../aiModel/reports/report.css');
+        
+//         const options = {
+//             paperFormat: 'A4',
+//             cssPath: fs.existsSync(cssPath) ? cssPath : null
+//         };
+
+//         markdownpdf(options)
+//             .from.string(markdownContent)
+//             .to(reportPath, function () {
+//                 if(logger) logger.info(`PDF ready: ${reportPath}`);
+                
+//                 // تحميل الملف
+//                 res.download(reportPath, (err) => {
+//                     if (err && logger) logger.error('Download Error:', err);
+//                 });
+//             });
+
+//     } catch (error) {
+//         if(logger) logger.error('Report Generation Failed', error);
+//         res.status(500).json({ message: "Report Generation Failed", error: error.message });
+//     }
+// };
+
+
+
 const mongoose = require("mongoose");
 const path = require("path");
 const fs = require("fs");
