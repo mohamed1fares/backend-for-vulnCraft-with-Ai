@@ -11,12 +11,9 @@
     "fs-extra": "^11.3.2",
     "helmet": "^8.1.0",
     "init": "^0.1.2",
-<<<<<<< Updated upstream
     "jsonwebtoken": "^9.0.3",
-=======
     "jsonwebtoken": "^9.0.2",
     "markdown-pdf": "^11.0.0",
->>>>>>> Stashed changes
     "mongoose": "^9.0.0",
     "multer": "^2.0.2",
     "node-cache": "^5.1.2",

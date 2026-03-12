@@ -3,7 +3,8 @@ require('winston-mongodb');
 require('dotenv').config(); // 🔥🔥 أهم سطر: تحميل المتغيرات هنا فوراً 🔥🔥
 
 // تأكد أن الرابط موجود وإلا استخدم رابط افتراضي لتجنب توقف السيرفر
-const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/test';
+// const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/test';
+const mongoUri = process.env.MONGO_URI ;
 
 const logger = createLogger({
     level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',

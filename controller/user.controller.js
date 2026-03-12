@@ -51,7 +51,7 @@ exports.createUser = (role) => {
         nationalID,
         image,
         role,
-        userActive: 'notActive',
+        userActive: 'active',
         userPending: 'pending'
       });
 
@@ -118,6 +118,9 @@ exports.editUserStatus = async (req, res) => {
   try {
     const { id } = req.params;
     const { userActive, userPending ,role,fristName} = req.body;
+    const user = await User.findById(id);
+
+
     const updatedUser = await User.findByIdAndUpdate(
       id,
       { userActive, userPending ,role,fristName },
@@ -131,7 +134,15 @@ exports.editUserStatus = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    logger.info(`User status updated successfully: ${fristName}`);
+    if (user.userActive !== updatedUser.userActive) {
+      logger.info(`User status updated email : ${updatedUser.email} , from : ${user.userActive} , to : ${updatedUser.userActive}`);
+    }else if (user.userPending !== updatedUser.userPending) {
+      logger.info(`User pending status updated email : ${updatedUser.email} , from : ${user.userPending} , to : ${updatedUser.userPending}`);
+    }else if (user.role !== updatedUser.role) {
+      logger.info(`User role updated email : ${updatedUser.email} , from : ${user.role} , to : ${updatedUser.role}`);
+    }else {
+      logger.info(`User status updated email : ${updatedUser.email},status is : ${updatedUser.userActive} , pending is : ${updatedUser.userPending} , role is : ${updatedUser.role}`);
+    }
 
     res.status(200).json({
       message: "User status updated successfully",
