@@ -178,6 +178,7 @@ exports.generateReportContent = async (targetUrl, cleanedData) => {
         let lastError = null;
         const aiStartTime = Date.now();
 
+        const MAX_ATTEMPTS = 5;
         for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
             const attemptStart = Date.now();
             try {
@@ -295,8 +296,9 @@ STRUCTURAL INTEGRITY:
                 logger?.warn(`⚠️ [AI] Attempt ${attempt} failed after ${attemptDuration}s: ${err.message}`);
 
                 if (attempt < MAX_ATTEMPTS) {
-                    logger?.info(`🔄 [AI] Retrying in 2s...`);
-                    await new Promise(r => setTimeout(r, 2000));
+                    const backoff = Math.pow(2, attempt) * 1000; // Exponential backoff: 2s, 4s, 8s, 16s
+                    logger?.info(`🔄 [AI] Retrying in ${backoff/1000}s...`);
+                    await new Promise(r => setTimeout(r, backoff));
                 }
             }
         }

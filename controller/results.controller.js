@@ -127,6 +127,7 @@
 //     }
 
 //     const targetUrlString = urlDoc.originalUrl;
+//
 
 //     // تحديث الحالة
 //     urlDoc.status = 'Scanning';
@@ -558,6 +559,11 @@ exports.scanAll = async (req, res) => {
     }
 
     const targetUrlString = urlDoc.originalUrl;
+    
+    console.log(`\n🚀 [SCAN STARTED] Received scan request for URL: ${targetUrlString} (ID: ${urlId})`);
+    console.log(`⏳ Please wait, scanning scripts are currently executing...`);
+    console.log("`n?? [SCAN STARTED] Received scan request for URL: ${targetUrlString} (ID: ${urlId})");
+    console.log("? Please wait, scanning scripts are currently executing...");
 
     // تحديث الحالة لبدء الفحص
     urlDoc.status = 'Scanning';

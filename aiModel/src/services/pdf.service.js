@@ -15,7 +15,21 @@ let sharedBrowser = null;
 
 const getBrowser = async () => {
     if (!sharedBrowser || !sharedBrowser.isConnected()) {
-        sharedBrowser = await puppeteer.launch({
+        const potentialPaths = [
+            'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
+            'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+            process.env.CHROME_PATH // Allow override via .env
+        ].filter(Boolean);
+
+        let executablePath = null;
+        for (const p of potentialPaths) {
+            if (fs.existsSync(p)) {
+                executablePath = p;
+                break;
+            }
+        }
+
+        const launchOptions = {
             headless: 'new',
             args: [
                 '--no-sandbox',
@@ -23,7 +37,16 @@ const getBrowser = async () => {
                 '--disable-dev-shm-usage',
                 '--disable-gpu'
             ]
-        });
+        };
+
+        if (executablePath) {
+            launchOptions.executablePath = executablePath;
+            logger?.info(`🌐 Using Chrome at: ${executablePath}`);
+        } else {
+            logger?.info('🌐 Chrome path not found, letting Puppeteer use default/cache');
+        }
+
+        sharedBrowser = await puppeteer.launch(launchOptions);
     }
     return sharedBrowser;
 };
