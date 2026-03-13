@@ -37,6 +37,7 @@
 const express = require('express');
 const router = express.Router();
 const resultController = require('../controller/results.controller');
+const reportController = require('../controller/reports.Controller'); // <-- ضيف السطر ده فوق
 const {authenticate} = require('../middlewares/auth.middleware');
 const {authorize} = require('../middlewares/role.middelware');
 
@@ -50,7 +51,14 @@ router.get('/url/:id/reports',authenticate, resultController.getReportsByUrl);
 
 
 
-// جلب تفاصيل تقرير محدد (Details)
-router.get('/report/:reportId',authenticate, resultController.getReportById);
+// في ملف routes/results.routes.js
+
+// ... الأكواد القديمة ...
+
+// جلب بيانات التقرير كـ JSON للداشبورد (الفرونت إند)
+// router.get('/report/:scanId/data', authenticate, reports.Controller.getReportData);
+
+// تحميل ملف الـ PDF
+router.get('/report/:scanId/download', authenticate, reportController.getReportData);
 
 module.exports = router;

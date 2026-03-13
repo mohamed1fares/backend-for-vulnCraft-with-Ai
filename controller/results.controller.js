@@ -345,6 +345,14 @@ const Url = require("../model/url.model");
 const Report = require("../model/results.model"); 
 const Vulnerability = require("../model/vulnerability.model");
 
+// استدعاء دوال الذكاء الاصطناعي
+const { prepareDataForAI } = require("../aiModel/src/utils/ai-cleaner.utils");
+// const { generateReportContent } = require("../aiModel/src/utils/gemini.service");
+const { generateReportContent } = require("../aiModel/src/utils/groq.service");
+const { enrichFindings, generateReportMetadata } = require("../aiModel/src/utils/risk-scoring.utils");
+const { buildFullReportHTML } = require("../aiModel/src/services/report-builder.service");
+const { generateAndSavePDF } = require("../aiModel/src/services/pdf.service");
+
 // --- 1. إعداد المسارات ---
 const SCRIPTS_DIR = path.join(__dirname, "../vulnerabilityFiles");
 const ADVANCED_DIR = path.join(__dirname, "../vulnerabilityFilesAdvanced");
@@ -396,8 +404,9 @@ function getPythonCommand() {
     for (const cmd of commandsToCheck) {
         try {
             // بنجرب نجيب المسار الكامل للأمر عشان نضمن إن spawn يشوفه
-            const fullPath = execSync(process.platform === "win32" ? `where ${cmd}` : `which ${cmd}`).toString().trim().split('\n')[0];
+            const fullPath = execSync(process.platform === "win32" ? `where ${cmd}` : `which ${cmd}`).toString().replace(/\r/g, '').split('\n')[0].trim();
             if (fullPath) {
+                console.log(`🔍 Found Python at: [${fullPath}]`);
                 cachedPythonCommand = fullPath;
                 return fullPath;
             }
@@ -487,7 +496,7 @@ function runScriptWorker(scriptFullPath, payloadPath, pythonCmd) {
       env: { ...process.env, PYTHONUNBUFFERED: "1" } // عشان يبعت الـ logs أول بأول
     });
     
-console.log("start scan");
+// console.log("start scan");
 
 
 
@@ -629,22 +638,72 @@ exports.scanAll = async (req, res) => {
       }
     });
 
+    // توليد تقرير الذكاء الاصطناعي والـ PDF تلقائياً
+    let aiReportContentStr = null;
+    let pdfFilename = null;
+    let reportMetadata = null;
+
+    try {
+      console.log("🤖 Starting AI Report & PDF pipeline...");
+
+      const processedResults = resultsArray.map(vuln => ({
+        ...vuln,
+        // بنضيف الحقل ده عشان الـ AI يشوفه
+        extractedEvidence: vuln.isDetected ? mapScannerDetailToEvidence(vuln) : "N/A"
+    }));
+
+      // 1. تنظيف البيانات
+      const cleanedData = prepareDataForAI(resultsArray, targetUrlString);
+      
+      // 2. تحليل الذكاء الاصطناعي
+      const aiReportContent = await generateReportContent(targetUrlString, cleanedData);
+      aiReportContentStr = JSON.stringify(aiReportContent);
+      
+      // 3. إثراء البيانات وحساب الميتا داتا
+      const enrichedFindings = enrichFindings(cleanedData.findings || []);
+      
+      // Use AI findings for metadata so executive summary accurately reflects AI's consolidated data
+      const finalFindingsForMetadata = (aiReportContent && Array.isArray(aiReportContent.findings)) 
+          ? aiReportContent.findings 
+          : enrichedFindings;
+          
+      reportMetadata = generateReportMetadata(finalFindingsForMetadata, targetUrlString);
+      reportMetadata.referenceId = `VC-${Date.now()}`;
+      reportMetadata.version = 1;
+
+      // 4. بناء الـ HTML
+      const fullHtml = buildFullReportHTML(aiReportContent, reportMetadata, enrichedFindings);
+
+      // 5. توليد وحفظ الـ PDF
+      const pdfResult = await generateAndSavePDF(fullHtml, targetUrlString, reportMetadata);
+      pdfFilename = pdfResult.filename;
+
+      console.log(`✅ PDF Generated: ${pdfFilename}`);
+    } catch (aiError) {
+      console.error("❌ AI/PDF Pipeline failed:", aiError);
+    }
+
     // حفظ التقرير في الداتابيز
     const newReport = new Report({
+        user: urlDoc.user._id || urlDoc.user,
         url: urlDoc._id,
         summary: {
             totalVulnerabilities: detectedCount,
             highestSeverity: finalSeverity
         },
-        details: resultsArray
+        details: resultsArray,
+        aiReportContent: aiReportContentStr,
+        pdfFilename: pdfFilename,
+        reportMeta: reportMetadata
     });
 
     await newReport.save();
 
-    // تحديث حالة الرابط النهائية
+    // تحديث حالة الرابط النهائية ورابط التقرير
     urlDoc.status = 'Finished';
     urlDoc.numberOfvuln = detectedCount;
     urlDoc.severity = detectedCount > 0 ? finalSeverity : 'safe';
+    urlDoc.report = pdfFilename ? `/reports/${pdfFilename}` : null;
     const serverIP = "188.239.55.189"; // الـ IP بتاعك
     await urlDoc.save();
 
@@ -733,3 +792,41 @@ exports.getReportById = async (req, res) => {
 };
 
 
+
+const mapScannerDetailToEvidence = (vulnerability) => {
+    const detail = vulnerability.technicalDetail || {};
+    const info = [];
+
+    // 1. فحص الهيدرز المكشوفة
+    if (detail.disclosed_headers && detail.disclosed_headers.length > 0) {
+        info.push(`Exposed Headers detected: ${detail.disclosed_headers.join(', ')}`);
+    }
+
+    // 2. فحص الهيدرز الأمنية الناقصة
+    if (detail.missing_headers && detail.missing_headers.length > 0) {
+        info.push(`Security Hardening Gap: Missing [${detail.missing_headers.join(', ')}]`);
+    }
+
+    // 3. فحص الـ Permissions Policy
+    if (detail.check_name === "Permissions Policy" && detail.present === false) {
+        info.push("Permissions-Policy header is completely absent from the server response.");
+    }
+
+    // 4. فحص مشاكل التشفير (TLS/SSL)
+    if (detail.check_name === "TLS Security") {
+        if (detail.https_used === false) {
+            info.push("Critical: Application is served over plaintext HTTP (No HTTPS).");
+        }
+        if (detail.reason) {
+            info.push(`Encryption Failure Reason: ${detail.reason}`);
+        }
+    }
+
+    // 5. فحص أخطاء الـ Python (لو السكنر كراش)
+    if (detail.pythonError) {
+        info.push(`Scanner internal error: ${detail.pythonError.split('\n')[0]}`);
+    }
+
+    // لو ملقيناش حاجة نرجع النص الافتراضي
+    return info.length > 0 ? info.join(' | ') : "Indicators suggest configuration weakness; manual verification required.";
+};

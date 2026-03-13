@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const reportSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     url: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Url',
@@ -28,7 +33,26 @@ const reportSchema = new mongoose.Schema({
             isDetected: Boolean, // هل الثغرة موجودة أم لا
             technicalDetail: Object // هنا نخزن مخرجات البايثون (اختياري)
         }
-    ]
+    ],
+    // محتوى التقرير المولد من الذكاء الاصطناعي
+    aiReportContent: {
+        type: String,
+        default: null
+    },
+    // اسم ملف الـ PDF المحفوظ
+    pdfFilename: {
+        type: String,
+        default: null
+    },
+    // بيانات التقرير الإضافية (ميتا داتا)
+    reportMeta: {
+        referenceId: String,
+        version: Number,
+        classification: String,
+        securityPosture: Object,
+        totalFindings: Number,
+        severityDistribution: Object
+    }
 }, { timestamps: true });
 
 

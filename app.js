@@ -36,6 +36,10 @@ app.use('/api/achievements',require('./routes/Achievement.routes'))
 app.use('/api/demovideo',require('./routes/demovideo.routes'))
 app.use('/api/download',require('./routes/download_file.routes'))
 
+// Report routes from aiModel
+const reportRoutes = require('./aiModel/src/routes/reportRoutes');
+app.use('/api/report', reportRoutes);
+
 // basic error handler (so multer/file errors return nice message)  
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
