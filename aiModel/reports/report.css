@@ -1,0 +1,226 @@
+/* ============================================================
+   VULNCRAFT — Enterprise Security Report Stylesheet v2.0
+   Optimized for High-Stakes Penetration Testing Reports
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  --text-main: #1e293b;
+  --text-light: #64748b;
+  --bg-main: #ffffff;
+  --bg-subtle: #f8fafc;
+  --border-color: #e2e8f0;
+  --accent-color: #0f172a;
+  
+  /* Severity Colors based on Example PDF */
+  --color-critical: #dc2626;
+  --color-high: #ea580c;
+  --color-medium: #d97706;
+  --color-low: #2563eb;
+  --color-safe: #16a34a;
+}
+
+/* ================= BASE STYLES ================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-main);
+  background: var(--bg-main);
+  padding: 40px;
+}
+
+/* ================= POSTURE CARD ================= */
+.posture-card {
+  border: 2px solid var(--color-high);
+  background: #fff7ed; /* Light orange background */
+  padding: 30px;
+  text-align: center;
+  border-radius: 12px;
+  margin: 30px 0;
+}
+
+.posture-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.posture-status {
+  font-size: 32px;
+  color: var(--color-high);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.posture-score {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+/* ربط العناوين بالمحتوى اللي بعدها */
+h1, h2, h3, h4, h5 {
+    page-break-after: avoid; /* ممنوع قطع الصفحة بعد العنوان */
+    break-after: avoid;
+}
+
+/* ربط العناوين داخل بلوكات الثغرات */
+.finding-subtitle, .finding-header-title {
+    page-break-after: avoid !important;
+}
+.finding-block, .remediation-block, .appendix-block, .posture-card {
+  page-break-inside: avoid; /* حاول تخلي البلوك ده كله في صفحة واحدة */
+  break-inside: avoid;
+  display: block; /* مهم عشان الخصائص دي تشتغل */
+}
+p, li {
+  orphans: 3; /* أقل عدد من السطور يفضل في آخر الصفحة */
+  widows: 3;  /* أقل عدد من السطور يبدأ في الصفحة الجديدة */
+}
+/* ================= HEADINGS ================= */
+h1 { font-size: 28px; margin-bottom: 10px; letter-spacing: -1px; }
+h2.section-title {
+  font-size: 16px;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 8px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* ================= RISK HEATMAP ================= */
+.heatmap-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.heatmap-table th, .heatmap-table td {
+  padding: 15px;
+  border: 1px solid var(--border-color);
+}
+
+.heatmap-table th { background: var(--bg-subtle); font-weight: 700; }
+
+/* ================= FINDING BLOCKS ================= */
+.finding-block {
+  margin-bottom: 40px;
+  page-break-inside: avoid;
+}
+
+.finding-header-title {
+  background: var(--bg-subtle);
+  padding: 12px 15px;
+  border-left: 4px solid var(--accent-color);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.finding-subtitle {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  font-weight: 700;
+  border-bottom: 1px solid var(--border-color);
+  margin: 15px 0 8px 0;
+  padding-bottom: 3px;
+}
+
+/* ================= CODE BLOCKS ================= */
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 15px;
+  border-radius: 6px;
+  display: block;
+  font-size: 10px;
+  margin: 10px 0;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+.vulnerable-code { border-left: 4px solid var(--color-critical); }
+.secure-code { border-left: 4px solid var(--color-safe); }
+
+/* ================= UTILITIES ================= */
+.badge {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 9px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.bg-critical { background: var(--color-critical); }
+.bg-high { background: var(--color-high); }
+.bg-medium { background: var(--color-medium); }
+.bg-low { background: var(--color-low); }
+
+.page-break { page-break-before: always; }
+
+@media print {
+  body { padding: 0; }
+  .posture-card { -webkit-print-color-adjust: exact; }
+}
+/* ================= HEADER LOGOS ================= */
+.logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.logo-container img {
+    height: 60px; /* ظبط الطول حسب اللوجو عندك */
+    object-fit: contain;
+}
+
+/* ================= TABLES (General) ================= */
+.summary-table, .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+}
+.summary-table th, .info-table td.info-label {
+    background: var(--bg-subtle);
+    font-weight: 700;
+    color: var(--accent-color);
+    text-align: left;
+}
+.summary-table th, .summary-table td, .info-table td {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+}
+
+/* ================= STRATEGIC RECS BADGES ================= */
+.effort-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 9px;
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    margin-left: 5px;
+}
+
+/* ================= FOOTER NOTE ================= */
+.footer-note {
+    position: fixed;
+    bottom: 20px;
+    left: 40px;
+    right: 40px;
+    text-align: center;
+    font-size: 9px;
+    color: var(--text-light);
+    border-top: 1px solid var(--border-color);
+    padding-top: 10px;
+}
