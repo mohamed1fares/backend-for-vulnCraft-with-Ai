@@ -836,3 +836,47 @@ const mapScannerDetailToEvidence = (vulnerability) => {
     // لو ملقيناش حاجة نرجع النص الافتراضي
     return info.length > 0 ? info.join(' | ') : "Indicators suggest configuration weakness; manual verification required.";
 };
+
+
+exports.downloadReport = async (req, res) => {
+    try {
+        const { scanId } = req.params;
+        const currentUserId = req.user._id;
+        const currentUserRole = req.user.role;
+
+        const Report = require('../model/results.model');
+        const report = await Report.findById(scanId);
+        if (!report) {
+            return res.status(404).json({ message: 'Report not found' });
+        }
+
+        // Security Check
+        if (report.user.toString() !== currentUserId.toString() && currentUserRole !== 'admin') {
+            return res.status(403).json({ message: 'Access Denied: You do not own this report.' });
+        }
+
+        if (!report.pdfFilename) {
+            return res.status(404).json({ message: 'PDF is still generating or not available.' });
+        }
+
+        const fs = require('fs');
+        const path = require('path');
+        const pdfPath = path.join(__dirname, '../reports', report.pdfFilename);
+
+        if (!fs.existsSync(pdfPath)) {
+            return res.status(404).json({ message: 'PDF file not found on server.' });
+        }
+
+        res.download(pdfPath, report.pdfFilename, (err) => {
+            if (err) {
+                console.error('Error downloading PDF:', err);
+                if (!res.headersSent) {
+                    res.status(500).json({ message: 'Error downloading file.' });
+                }
+            }
+        });
+    } catch (err) {
+        console.error('Download Report Error:', err);
+        res.status(500).json({ error: err.message });
+    }
+};

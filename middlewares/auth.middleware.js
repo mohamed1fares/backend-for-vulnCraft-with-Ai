@@ -11,10 +11,11 @@ exports.authenticate = async (req, res, next)=>{
     const token = authheader.split(' ')[1];
     try{
         const decoded = JWT.verify(token, process.env.JWT_KEY);
-         const user = await User.findById(decoded.id).select('-password');
-         req.user = user;
-        //  console.log(user);
-         
+        const user = await User.findById(decoded.id).select('-password');
+        if (!user) {
+            return res.status(401).json({ message: "USER NOT FOUND OR DELETED" });
+        }
+        req.user = user;
     }
     catch(error){
         return res.status(403).json({message:"INVALID TOKEN"})
